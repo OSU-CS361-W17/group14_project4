@@ -27,6 +27,15 @@ class BattleshipModelTest {
         assertEquals(1,1);
     }*/
 
+    @Test
+    void testPlayerFire(){
+        Coordinate shot = new Coordinate(1,2);
+        BattleshipModel testModel = new BattleshipModel();
+        testModel.placeShipAI();
+        testModel.fire(testModel.getAI(), shot);
+        assertNotEquals(testModel.getAI().getMisses().size(), 0);
+    }
+
 
     @Test
     void placeShipAI() {
