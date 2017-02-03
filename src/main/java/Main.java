@@ -1,5 +1,3 @@
-package edu.oregonstate.cs361.battleship;
-
 import spark.Request;
 import static spark.Spark.get;
 import static spark.Spark.post;
