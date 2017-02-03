@@ -11,6 +11,7 @@ public class BattleshipModel {
     public void play(){}
 
     public BattleshipModel(){
+        //This constructor is so the boards are initialized so they can be used.
         ai = new Board();
         player = new Board();
     }
