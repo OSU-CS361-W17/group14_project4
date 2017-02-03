@@ -9,9 +9,6 @@ public class Game {
 
     public BattleshipModel interpret_JSON(){}
 
-
-    public String generate_JSON(){return null;}
-
     public String generate_JSON(BattleshipModel myModel){
         Gson gson = new Gson();
         String json = gson.toJson(myModel);
@@ -19,5 +16,4 @@ public class Game {
 
 
     }
-
 }
