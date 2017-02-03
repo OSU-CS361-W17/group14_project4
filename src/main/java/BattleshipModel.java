@@ -2,6 +2,7 @@
  * Created by root on 2/2/17.
  */
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.ArrayList;
 
 public class BattleshipModel {
 
@@ -20,11 +21,23 @@ public class BattleshipModel {
         //This causes an error so I'm just gonna leave this here for now -Justin
         return false;
     }
-    public void ai_shoot(Board ai, Coordinate Coord){
-        fire(ai, Coord);
-    }
-    public void fire(Board aiOrPlayer, Coordinate Coord){
-        aiOrPlayer.isHit(Coord);
+
+    public void fire(Board target, Coordinate shot){
+        //get array of all occupied coordinates on ai board
+        ArrayList<Coordinate> ships = target.getAllShips();
+        //for each cordinate
+        for(Coordinate occupied: ships){
+            //if the shot matches a ship location
+            if(shot.getAcross() == occupied.getAcross() &&
+                    shot.getDown() == occupied.getDown()){
+                //add to ai's hit list
+                ai.addHit(shot);
+                return;
+            }
+        }
+        //If it is not occupied then add to miss list
+        ai.addMiss(shot);
+
     }
 
     public void placeShipAI(){
@@ -100,5 +113,8 @@ public class BattleshipModel {
     public Board getAI(){
         //This is for testing purposes.
         return ai;
+    }
+    public Board getPlayer(){
+        return player;
     }
 }
