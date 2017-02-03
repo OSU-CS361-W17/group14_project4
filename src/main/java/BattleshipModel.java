@@ -8,6 +8,12 @@ public class BattleshipModel {
 
     public void play(){}
 
-    public boolean gameOver(){}
-
+    public boolean gameOver(){
+    }
+    public void ai_shoot(Board ai, Coordinate Coord){
+        fire(ai, Coord);
+    }
+    public void fire(Board aiOrPlayer, Coordinate Coord){
+        aiOrPlayer.isHit(Coord);
+    }
 }
