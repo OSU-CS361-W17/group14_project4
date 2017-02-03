@@ -58,4 +58,8 @@ public class Board {
     public ArrayList<Coordinate> getMisses(){
         return misses;
     }
+
+    public void addShip(Ship newShip){
+        ships.add(newShip);
+    }
 }
