@@ -6,5 +6,5 @@ public class Game {
 
     public BattleshipModel interpret_JSON(){}
 
-    public String generate_JSON(){}
+    public String generate_JSON(){return null;}
 }
