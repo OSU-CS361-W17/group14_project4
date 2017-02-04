@@ -71,6 +71,7 @@ public class BattleshipModel {
         generateShipLocation(player,"Battleship",4);
         generateShipLocation(player,"Carrier",5);
     }
+  
     public void generateShipLocation(Board ai, String type, int size){
         int x,y,direction;
         Coordinate start = new Coordinate(0,0),end = new Coordinate(0,0);
