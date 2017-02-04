@@ -6,27 +6,35 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class MainTest {
     @Test
-    Boolean newModel() {
-        assertTrue(newModel());
-        return true;
+    void main() {
+        String[] a =  {"/Test/1/2/3","/Something/SomethingElse"};
+        Main t = new Main(a);
+        assertNotEquals(null,t);
     }
 
     @Test
-    Boolean getModelFromReq() {
-        assertTrue(getModelFromReq());
-        return true;
+    void newModel() {
+        Main t = new Main();
+        assertEquals(true,t.createdNewModel());
     }
 
     @Test
-    Boolean placeShip() {
-        assertTrue(placeShip());
-        return true;
+    void getModelFromReq() {
+        Main t = new Main();
+
+        //assertEquals(true,t.createdGetModelFromReq());
     }
 
     @Test
-    Boolean fireAt() {
-        assertTrue(fireAt());
-        return true;
+    void placeShip() {
+        Main t = new Main();
+        //assertEquals(true,t.createdPlaceShip());
+    }
+
+    @Test
+    void fireAt() {
+        Main t = new Main();
+        //assertEquals(true,t.createdFireAt());
     }
 
 }
