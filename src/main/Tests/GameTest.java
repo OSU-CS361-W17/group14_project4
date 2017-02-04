@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
-
     private BattleshipModel myModel = new BattleshipModel();
     private String g = "testjson";
 

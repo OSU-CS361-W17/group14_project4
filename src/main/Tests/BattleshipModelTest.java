@@ -40,10 +40,6 @@ class BattleshipModelTest {
         assertNotEquals(0,testModel.getAI().getMisses());
         assertNotEquals(0,testModel.getAI().getHits());
     }
-    @Test
-    void play() {
-
-    }
 
     @Test
     void fire(){

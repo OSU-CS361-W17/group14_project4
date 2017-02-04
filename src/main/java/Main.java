@@ -20,7 +20,6 @@ public class Main {
     }
 
     //This function should return a new model
-
     public Boolean createdNewModel() { return newModel(); }
     //For testing purposes
 
@@ -38,6 +37,7 @@ public class Main {
     }
 
     //This controller should take a json object from the front end, and place the ship as requested, and then return the object.
+
 
     //public Boolean createdPlaceShip(Request req) {
         //return placeShip(req);

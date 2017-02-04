@@ -2,6 +2,7 @@
  * Created by julianweisbord on 2/3/17.
  */
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ShipTest {
@@ -28,7 +29,7 @@ class ShipTest {
 
     @org.junit.jupiter.api.Test
     void getEnd() {
-        assertEquals(location, theBlackPearl.getEnd());
+        assertEquals(location, theBlackPearl.getEnd())
     }
 
     @org.junit.jupiter.api.Test
@@ -37,9 +38,8 @@ class ShipTest {
 
     }
     @org.junit.jupiter.api.Test
-    void getCoordinates(){
     Coordinate[] getCoordinates(){
-        coords[0] = location;
+        coords[0] =location;
         assertEquals(coords, theBlackPearl.getCoordinates());
     }
 
