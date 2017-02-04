@@ -1,4 +1,6 @@
 import spark.Request;
+import spark.Spark;
+
 import static spark.Spark.get;
 import static spark.Spark.post;
 import static spark.Spark.staticFiles;
@@ -18,19 +20,35 @@ public class Main {
     }
 
     //This function should return a new model
+
+    public Boolean createdNewModel() { return newModel(); }
+    //For testing purposes
+
     private static Boolean newModel() {
         return true;
     }
 
     //This function should accept an HTTP request and deseralize it into an actual Java object.
-    private static Boolean getModelFromReq(Request req){
+
+    public Boolean createdGetModelFromReq() { return getModelFromReq("test"); }
+    //For testing purposes
+
+    private static Boolean getModelFromReq(String req){
         return true;
     }
 
     //This controller should take a json object from the front end, and place the ship as requested, and then return the object.
+
+    //For testing purposes
+
     private static Boolean placeShip(Request req) {
         return true;
     }
+
+
+    public Boolean createdFireAt() { return
+            post("/fire/:row/:col", (req, res) -> fireAt(req));; }
+    //For testing purposes
 
     //Similar to placeShip, but with firing.
     private static Boolean fireAt(Request req) {

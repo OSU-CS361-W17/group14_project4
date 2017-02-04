@@ -6,27 +6,27 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class MainTest {
     @Test
-    Boolean newModel() {
-        assertTrue(newModel());
-        return true;
+    void newModel() {
+        Main t = new Main();
+        assertEquals(true,t.createdNewModel());
     }
 
     @Test
-    Boolean getModelFromReq() {
-        assertTrue(getModelFromReq());
-        return true;
+    void getModelFromReq() {
+        Main t = new Main();
+        assertEquals(true,t.createdGetModelFromReq());
     }
 
     @Test
-    Boolean placeShip() {
-        assertTrue(placeShip());
-        return true;
+    void placeShip() {
+        Main t = new Main();
+        assertEquals(true,t.createdPlaceShip());
     }
 
     @Test
-    Boolean fireAt() {
-        assertTrue(fireAt());
-        return true;
+    void fireAt() {
+        Main t = new Main();
+        assertEquals(true,t.createdFireAt());
     }
 
 }
