@@ -16,7 +16,7 @@ public class BattleshipModel {
         player = new Board();
     }
 
-    public boolean gameOver(){
+    /*public boolean gameOver(){
         //This causes an error so I'm just gonna leave this here for now -Justin
         return false;
     }
@@ -25,7 +25,7 @@ public class BattleshipModel {
     }
     public void fire(Board aiOrPlayer, Coordinate Coord){
         aiOrPlayer.isHit(Coord);
-    }
+    }*/
 
     public void placeShipAI(){
         generateShipLocation(ai,"Destroyer",2);
