@@ -46,6 +46,9 @@ public class Board {
         }
         return occupied;
     }
+    public void addHit(Coordinate shot) {hits.add(shot);}
+
+    public void addMiss(Coordinate shot) {misses.add(shot);}
 
     public ArrayList<Ship> getShips(){
         return ships;
