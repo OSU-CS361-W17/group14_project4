@@ -6,40 +6,18 @@ import static org.junit.jupiter.api.Assertions.*;
  * Created by Pomer on 2/3/2017.
  */
 class BattleshipModelTest {
+    /*
+    @Test
+    void play() {
+
+    }
+
     @Test
     void gameOver() {
-        BattleshipModel testModel = new BattleshipModel();
-        assertEquals(false,testModel.gameOver());
+
     }
 
-    @Test
-    void aiFire() {
-        BattleshipModel testModel = new BattleshipModel();
-        testModel.placeShip();
-        Coordinate c = new Coordinate(0,0);
-        for(int i=0;i<11;i++){
-            for(int j=0;j<11;j++){
-                c = new Coordinate(i,j);
-                testModel.aiFire(testModel.getPlayer(),c);
-            }
-        }
-        assertNotEquals(0,testModel.getPlayer().getMisses());
-        assertNotEquals(0,testModel.getPlayer().getHits());
-    }
-
-    @Test
-    void fire1() {
-        BattleshipModel testModel = new BattleshipModel();
-        Coordinate c = new Coordinate(0,0);
-        for(int i=0;i<11;i++){
-            for(int j=0;j<11;j++){
-                c = new Coordinate(i,j);
-                testModel.fire(testModel.getAI(),c);
-            }
-        }
-        assertNotEquals(0,testModel.getAI().getMisses());
-        assertNotEquals(0,testModel.getAI().getHits());
-    }
+    }*/
 
     @Test
     void fire(){
@@ -56,7 +34,7 @@ class BattleshipModelTest {
         BattleshipModel testModel = new BattleshipModel();
         testModel.placeShip();
         testModel.fire(testModel.getPlayer(), shot);
-        assertNotEquals(0,testModel.getPlayer().getMisses());
+        assertNotEquals(testModel.getPlayer().getMisses().size(), 0);
     }
 
 
