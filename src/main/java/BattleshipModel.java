@@ -9,7 +9,7 @@ public class BattleshipModel {
     private Board ai;
     private Board player;
 
-    public void play(){}
+    //public void play(){}
 
     public BattleshipModel(){
         //This constructor is so the boards are initialized so they can be used.

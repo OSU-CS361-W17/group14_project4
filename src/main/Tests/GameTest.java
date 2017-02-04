@@ -11,11 +11,17 @@ class GameTest {
 
     @org.junit.jupiter.api.Test
     void generate_JSON() {
+        Game t = new Game();
         Gson gson = new Gson();
         String json = gson.toJson(myModel);
         json = g;
-        assertEquals("testjson", json);
+        assertNotEquals(null, t.generate_JSON(myModel));
 
+    }
+    @Test
+    void interpret_JSON() {
+        Game t = new Game();
+        assertEquals(null,t.interpret_JSON());
     }
 
 //    public String generate_JSON(BattleshipModel myModel){

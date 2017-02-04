@@ -13,7 +13,5 @@ public class Game {
         Gson gson = new Gson();
         String json = gson.toJson(myModel);
         return json;
-
-
     }
 }
