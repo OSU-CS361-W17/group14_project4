@@ -17,23 +17,24 @@ class BattleshipModelTest {
 
     }
 
-    @Test
-    void ai_shoot() {
-
-    }
-
-    @Test
-    void fire() {
-        assertEquals(1,1);
     }*/
 
     @Test
-    void testPlayerFire(){
+    void fire(){
         Coordinate shot = new Coordinate(1,2);
         BattleshipModel testModel = new BattleshipModel();
         testModel.placeShipAI();
         testModel.fire(testModel.getAI(), shot);
         assertNotEquals(testModel.getAI().getMisses().size(), 0);
+    }
+
+    @Test
+    void aifire(){
+        Coordinate shot = new Coordinate(1,2);
+        BattleshipModel testModel = new BattleshipModel();
+        testModel.placeShip();
+        testModel.fire(testModel.getPlayer(), shot);
+        assertNotEquals(testModel.getPlayer().getMisses().size(), 0);
     }
 
 
@@ -60,6 +61,7 @@ class BattleshipModelTest {
                         assertNotEquals(testModel.getAI().getShips().get(i).getCoordinates()[k],
                                 testModel.getAI().getShips().get(j).getCoordinates()[m]);
                         //Efficiency and I are not on speaking terms. -Justin
+                        //We still love you - Group 14
                     }
                 }
             }

@@ -18,23 +18,23 @@ public class Main {
     }
 
     //This function should return a new model
-    private static String newModel() {
-        return null;
+    private static Boolean newModel() {
+        return true;
     }
 
     //This function should accept an HTTP request and deseralize it into an actual Java object.
-    private static BattleshipModel getModelFromReq(Request req){
-        return null;
+    private static Boolean getModelFromReq(Request req){
+        return true;
     }
 
     //This controller should take a json object from the front end, and place the ship as requested, and then return the object.
-    private static String placeShip(Request req) {
-        return null;
+    private static Boolean placeShip(Request req) {
+        return true;
     }
 
     //Similar to placeShip, but with firing.
-    private static String fireAt(Request req) {
-        return null;
+    private static Boolean fireAt(Request req) {
+        return true;
     }
 
 }

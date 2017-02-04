@@ -21,6 +21,23 @@ public class BattleshipModel {
         //This causes an error so I'm just gonna leave this here for now -Justin
         return false;
     }
+    public void aiFire(Board target, Coordinate shot){
+        //get array of all occupied coordinates on ai board
+        ArrayList<Coordinate> ships = target.getAllShips();
+        //for each cordinate
+        for(Coordinate occupied: ships){
+            //if the shot matches a ship location
+            if(shot.getAcross() == occupied.getAcross() &&
+                    shot.getDown() == occupied.getDown()){
+                //add to ai's hit list
+                player.addHit(shot);
+                return;
+            }
+        }
+        //If it is not occupied then add to miss list
+        player.addMiss(shot);
+
+    }
 
     public void fire(Board target, Coordinate shot){
         //get array of all occupied coordinates on ai board
@@ -46,6 +63,13 @@ public class BattleshipModel {
         generateShipLocation(ai,"Cruiser",3);
         generateShipLocation(ai,"Battleship",4);
         generateShipLocation(ai,"Carrier",5);
+    }
+    public void placeShip(){
+        generateShipLocation(player,"Destroyer",2);
+        generateShipLocation(player,"Submarine",3);
+        generateShipLocation(player,"Cruiser",3);
+        generateShipLocation(player,"Battleship",4);
+        generateShipLocation(player,"Carrier",5);
     }
     public void generateShipLocation(Board ai, String type, int size){
         int x,y,direction;
