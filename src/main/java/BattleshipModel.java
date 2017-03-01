@@ -58,16 +58,16 @@ public class BattleshipModel {
     }
 
     public void placeShipAI(){
-        generateShipLocation(ai,"Destroyer",2);
+        generateShipLocation(ai,"Clipper",3);
         generateShipLocation(ai,"Submarine",3);
-        generateShipLocation(ai,"Cruiser",3);
+        generateShipLocation(ai,"Dinghy",1);
         generateShipLocation(ai,"Battleship",4);
         generateShipLocation(ai,"Carrier",5);
     }
     public void placeShip(){
-        generateShipLocation(player,"Destroyer",2);
+        generateShipLocation(player,"Clipper",3);
         generateShipLocation(player,"Submarine",3);
-        generateShipLocation(player,"Cruiser",3);
+        generateShipLocation(player,"Dinghy",1);
         generateShipLocation(player,"Battleship",4);
         generateShipLocation(player,"Carrier",5);
     }
@@ -79,6 +79,7 @@ public class BattleshipModel {
         boolean valid = true;
         direction = ThreadLocalRandom.current().nextInt(0,2);
         String dir;
+        Ship s = null;
         if (direction == 0){
             //Facing sideways
             dir = "horizontal";
@@ -129,8 +130,19 @@ public class BattleshipModel {
             }
 
         }
+        if (type == "Clipper"){
+            s = new Civillianship(type,size,start,end,dir,true);
+        } else if (type == "Submarine"){
+            s = new Battleship(type,size,start,end,dir,false);
+        } else if (type == "Dinghy"){
+            s = new Civillianship(type,size,start,end,dir,true);
+        } else if (type == "Battleship"){
+            s = new Battleship(type,size,start,end,dir,true);
+        } else if (type == "Carrier"){
+            s = new Battleship(type,size,start,end,dir,true);
+        }
+        //Hard coded, but it's fine since this is all that's going to be inputted.
 
-        Ship s = new Ship(type,size,start,end,dir);
         ai.addShip(s);
 
     }

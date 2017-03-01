@@ -8,13 +8,16 @@ public class Ship {
     private Coordinate start;
     private Coordinate end;
     private String orientation;
+    private boolean canScan;
+    private boolean isCivilian;
 
-    public Ship(String name, int length, Coordinate start, Coordinate end, String orientation){
+    public Ship(String name, int length, Coordinate start, Coordinate end, String orientation,boolean canScan){
         this.name=name;
         this.length=length;
         this.start=start;
         this.end=end;
         this.orientation=orientation;
+        this.canScan = canScan;
     }
 
 
@@ -51,5 +54,16 @@ public class Ship {
 
     public String getOrientation(){
         return orientation;
+    }
+
+    public boolean getCanScan(){
+        return canScan;
+    }
+
+    public void setCivilian(){ isCivilian = true; }
+    public void setBattle(){ isCivilian = false; }
+
+    public boolean isCivilian(){
+        return isCivilian;
     }
 }

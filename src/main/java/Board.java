@@ -19,6 +19,7 @@ public class Board {
     public void firedAt(int across, int down){
         Coordinate location = new Coordinate(across, down);
         if(isHit(location)){
+
             hits.add(location);
         }
         else{
