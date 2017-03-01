@@ -1,6 +1,7 @@
 /**
  * Created by millelog on 2/2/17.
  */
+import javax.xml.stream.Location;
 import java.util.ArrayList;
 
 public class Board {
@@ -18,11 +19,17 @@ public class Board {
 
     public void firedAt(int across, int down){
         Coordinate location = new Coordinate(across, down);
-        if(isHit(location)){
-
-            hits.add(location);
-        }
-        else{
+        if(isHit(location)) {
+            if (getIsCivilian(location)) {
+                int shipHit = hitShip(location);
+                Coordinate shipCoords[] = ships.get(shipHit).getCoordinates();
+                for (int i = 0; i < shipCoords.length; i++) {
+                    hits.add(shipCoords[i]);
+                }
+            } else {
+                hits.add(location);
+            }
+        } else{
             misses.add(location);
         }
 
@@ -65,5 +72,31 @@ public class Board {
 
     public void addShip(Ship newShip){
         ships.add(newShip);
+    }
+
+    public boolean getIsCivilian(Coordinate loc) {
+        ArrayList<Ship> temp = ships;
+        for (int i = 0; i < temp.size(); i++) {
+            for (int j = 0; j < temp.get(i).getCoordinates().length; j++) {
+                if (temp.get(i).getCoordinates()[i] == loc) {
+                    return temp.get(i).isCivilian();
+                }
+            }
+        }
+        return false;
+        //Failsafe because it'll bug otherwise.
+        //This should never run, though, because the precondition is that it'll run first.
+    }
+
+    public int hitShip(Coordinate loc) {
+        for(int i = 0; i < ships.size(); i++){
+            for (int j = 0; j < ships.get(i).getCoordinates().length; j++){
+                if (loc == ships.get(i).getCoordinates()[j]){
+                    return i;
+                }
+            }
+        }
+        return 0;
+        //Failsafe again. See above.
     }
 }
