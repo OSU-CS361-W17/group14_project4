@@ -8,8 +8,6 @@ class MainTest {
     @Test
     void main() {
         String[] a =  {"/Test/1/2/3","/Something/SomethingElse"};
-        Main t = new Main(a);
-        assertNotEquals(null,t);
     }
 
     @Test
@@ -22,19 +20,19 @@ class MainTest {
     void getModelFromReq() {
         Main t = new Main();
 
-        //assertEquals(true,t.createdGetModelFromReq());
+        assertEquals(true,t.createdGetModelFromReq());
     }
 
     @Test
     void placeShip() {
         Main t = new Main();
-        //assertEquals(true,t.createdPlaceShip());
+        assertEquals(true,t.createdPlaceShip());
     }
 
     @Test
     void fireAt() {
         Main t = new Main();
-        //assertEquals(true,t.createdFireAt());
+        assertEquals(true,t.createdFireAt());
     }
 
 }
