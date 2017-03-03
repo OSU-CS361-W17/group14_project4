@@ -19,6 +19,7 @@ public class BattleshipModel {
 
     public boolean gameOver(){
         //This causes an error so I'm just gonna leave this here for now -Justin
+        //oh gawd this made me laugh
         return false;
     }
     public void aiFire(Board target, Coordinate shot){
@@ -36,7 +37,6 @@ public class BattleshipModel {
         }
         //If it is not occupied then add to miss list
         player.addMiss(shot);
-
     }
 
     public void fire(Board target, Coordinate shot){
@@ -76,31 +76,37 @@ public class BattleshipModel {
         int x,y,direction;
         Coordinate start = new Coordinate(0,0),end = new Coordinate(0,0);
         //This is because there's a syntax error if it's not assigned to begin with.
-        boolean valid = true;
+        boolean valid = false;
         direction = ThreadLocalRandom.current().nextInt(0,2);
         String dir;
         Ship s = null;
         if (direction == 0){
             //Facing sideways
             dir = "horizontal";
-            while(valid){
-                valid = false;
+            while(!valid){
                 x = ThreadLocalRandom.current().nextInt(0,11-size);
                 y = ThreadLocalRandom.current().nextInt(0,11);
                 start = new Coordinate(x,y);
-                end = new Coordinate(start.getAcross()+size,start.getDown()+size);
-                for(int i=0;i<ai.getShips().size();i++){
-                    Coordinate[] comp = ai.getShips().get(i).getCoordinates();
-                    for(int j=0;j<comp.length;j++){
-                        //Make sure there is no intersection.
-                        if((comp[j].getAcross() >= start.getAcross() && comp[j].getAcross() <= end.getAcross()) &&
-                                (comp[j].getDown() >= start.getDown() && comp[j].getDown() <= end.getDown())){
-                            //If the point is greater than the prospective point's start but less than it's end
-                            //for both X and Y, that means there's a problem.
+                end = new Coordinate(start.getAcross()+size,start.getDown());
+                //get the coordinates of the current ship
+                ArrayList<Coordinate> currentShipCoordinates = new ArrayList<Coordinate>();
+                for(int i=0; i<size; i++){
+                    currentShipCoordinates.add(new Coordinate(x+i, y));
+                }
+                //get all occupied coordinates on the ai board
+                ArrayList<Coordinate> occupiedCoordinates = ai.getAllShips();
+                outerloop:
+                for(Coordinate currentShipCoordinate : currentShipCoordinates) {
+                    //Make sure there is no intersection.
+                    for (Coordinate occupied : occupiedCoordinates) {
+                        if (occupied.getAcross() == currentShipCoordinate.getAcross() &&
+                                occupied.getDown() == currentShipCoordinate.getDown()) {
+                            valid = false;
+                            break outerloop;
+                        } else {
                             valid = true;
                         }
                     }
-
                 }
             }
 
@@ -108,24 +114,30 @@ public class BattleshipModel {
         else {
             //Facing downwards
             dir = "vertical";
-            while(valid){
-                valid = false;
+            while(!valid){
                 x = ThreadLocalRandom.current().nextInt(0,11);
                 y = ThreadLocalRandom.current().nextInt(0,11-size);
                 start = new Coordinate(x,y);
-                end = new Coordinate(start.getAcross()+size,start.getDown()+size);
-                for(int i=0;i<ai.getShips().size();i++){
-                    Coordinate[] comp = ai.getShips().get(i).getCoordinates();
-                    for(int j=0;j<comp.length;j++){
-                        //Make sure there is no intersection.
-                        if((comp[j].getAcross() >= start.getAcross() && comp[j].getAcross() <= end.getAcross()) &&
-                                (comp[j].getDown() >= start.getDown() && comp[j].getDown() <= end.getDown())){
-                            //If the point is greater than the prospective point's start but less than it's end
-                            //for both X and Y, that means there's a problem.
+                end = new Coordinate(start.getAcross(),start.getDown()+size);
+                //get the coordinates of the current ship
+                ArrayList<Coordinate> currentShipCoordinates = new ArrayList<Coordinate>();
+                for(int i=0; i<size; i++){
+                    currentShipCoordinates.add(new Coordinate(x, y+i));
+                }
+                //get all occupied coordinates on the ai board
+                ArrayList<Coordinate> occupiedCoordinates = ai.getAllShips();
+                outerloop:
+                for(Coordinate currentShipCoordinate : currentShipCoordinates) {
+                    //Make sure there is no intersection.
+                    for (Coordinate occupied : occupiedCoordinates) {
+                        if (occupied.getAcross() == currentShipCoordinate.getAcross() &&
+                                occupied.getDown() == currentShipCoordinate.getDown()) {
+                            valid = false;
+                            break outerloop;
+                        } else {
                             valid = true;
                         }
                     }
-
                 }
             }
 
