@@ -12,10 +12,11 @@ class BattleshipModelTest {
         assertEquals(false,testModel.gameOver());
     }
 
+
     @Test
     void aiFire() {
         BattleshipModel testModel = new BattleshipModel();
-        testModel.placeShip();
+        testModel.placeShip(new Ship("Clipper", 3, new Coordinate(1,1), new Coordinate(1,3), "vertical", true));
         Coordinate c = new Coordinate(0,0);
         for(int i=0;i<11;i++){
             for(int j=0;j<11;j++){
@@ -23,8 +24,8 @@ class BattleshipModelTest {
                 testModel.aiFire(testModel.getPlayer(),c);
             }
         }
-        assertNotEquals(0,testModel.getPlayer().getMisses().size());
-        assertNotEquals(0,testModel.getPlayer().getHits().size());
+        assertNotEquals(0,testModel.getPlayer().getMisses());
+        assertNotEquals(0,testModel.getPlayer().getHits());
     }
 
     @Test
@@ -37,8 +38,8 @@ class BattleshipModelTest {
                 testModel.fire(testModel.getAI(),c);
             }
         }
-        assertNotEquals(0,testModel.getAI().getMisses().size());
-        assertNotEquals(0,testModel.getAI().getHits().size());
+        assertNotEquals(0,testModel.getAI().getMisses());
+        assertNotEquals(0,testModel.getAI().getHits());
     }
 
     @Test

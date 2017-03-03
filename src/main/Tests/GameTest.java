@@ -19,9 +19,20 @@ class GameTest {
 
     }
     @Test
-    void interpret_JSON() {
+    void interpret_JSON(g) {
         Game t = new Game();
-        assertEquals(null,t.interpret_JSON());
+        assertNotEquals(null,t.interpret_JSON());
+    }
+    @Test
+    void getModel(){
+        Game t = new Game();
+        assertNotEquals(null,t.getModel());
+    }
+    @Test
+    void setModel(myModel){
+        Game t = new Game();
+        t.setModel(myModel);
+        assertNotEquals(null,t.getModel());
     }
 
 //    public String generate_JSON(BattleshipModel myModel){
