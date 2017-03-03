@@ -38,7 +38,7 @@ class ShipTest {
     }
     @org.junit.jupiter.api.Test
     void getCoordinates(){
-    Coordinate[] getCoordinates(){
+//    Coordinate[] getCoordinates(){
         coords[0] = location;
         assertEquals(coords, theBlackPearl.getCoordinates());
     }
