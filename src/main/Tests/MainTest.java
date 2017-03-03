@@ -20,19 +20,19 @@ class MainTest {
     void getModelFromReq() {
         Main t = new Main();
 
-        //assertEquals(true,t.createdGetModelFromReq());
+        assertEquals(true,t.createdGetModelFromReq());
     }
 
     @Test
     void placeShip() {
         Main t = new Main();
-        //assertEquals(true,t.createdPlaceShip());
+        assertEquals(true,t.createdPlaceShip());
     }
 
     @Test
     void fireAt() {
         Main t = new Main();
-        //assertEquals(true,t.createdFireAt());
+        assertEquals(true,t.createdFireAt());
     }
 
 }
