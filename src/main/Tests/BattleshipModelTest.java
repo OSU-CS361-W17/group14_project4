@@ -23,8 +23,8 @@ class BattleshipModelTest {
                 testModel.aiFire(testModel.getPlayer(),c);
             }
         }
-        assertNotEquals(0,testModel.getPlayer().getMisses());
-        assertNotEquals(0,testModel.getPlayer().getHits());
+        assertNotEquals(0,testModel.getPlayer().getMisses().size());
+        assertNotEquals(0,testModel.getPlayer().getHits().size());
     }
 
     @Test
@@ -37,8 +37,8 @@ class BattleshipModelTest {
                 testModel.fire(testModel.getAI(),c);
             }
         }
-        assertNotEquals(0,testModel.getAI().getMisses());
-        assertNotEquals(0,testModel.getAI().getHits());
+        assertNotEquals(0,testModel.getAI().getMisses().size());
+        assertNotEquals(0,testModel.getAI().getHits().size());
     }
 
     @Test
