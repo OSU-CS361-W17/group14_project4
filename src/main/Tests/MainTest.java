@@ -42,3 +42,4 @@ class MainTest {
         Main t = new Main();
         assertEquals(true,t.createdFireAt());
     }
+}
