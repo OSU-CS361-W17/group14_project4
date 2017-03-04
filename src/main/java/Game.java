@@ -23,7 +23,7 @@ public class Game {
     public void interpret_JSON(String json){
         Gson gson = new Gson();
         model = gson.fromJson(json, BattleshipModel.class);
-    } //Just here to make it compile.
+    }
 
     public String generate_JSON(){
         Gson gson = new Gson();

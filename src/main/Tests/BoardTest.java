@@ -7,10 +7,20 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class BoardTest {
     private Board testBoard = new Board();
-    private Ship testShip = new Ship("submarine", 3, new Coordinate(1, 3), new Coordinate(1,5), "horizontal");
+    private Ship testShip = new Battleship("submarine", 3, new Coordinate(1, 3), new Coordinate(1,5), "vertical",false);
+    private Ship testCivShip = new Civillianship("civSub", 3, new Coordinate(2, 3), new Coordinate(2,5), "vertical",true);
     @Test
     void firedAt() {
         testBoard.addMiss(new Coordinate(1,3));
+        assertNotEquals(testBoard.getMisses().size(), 0);
+
+    }
+    @Test
+    void civillianfiredAtTest() {
+        testBoard.addShip(testShip);
+        testBoard.addShip(testCivShip);
+        testBoard.firedAt(2,3);
+        testBoard.firedAt(2,4);
         assertNotEquals(testBoard.getMisses().size(), 0);
 
     }
@@ -34,7 +44,7 @@ class BoardTest {
     void addHit() {
         Coordinate shot = new Coordinate(7, 1);
         testBoard.addHit(shot);
-        assertNotEquals(testBoard.getMisses().size(), 0);
+        assertEquals(testBoard.getMisses().size(), 0);
 
     }
 
@@ -70,6 +80,22 @@ class BoardTest {
     void addShip() {
         testBoard.addShip(testShip);
         assertNotEquals(testBoard.getShips().size(), 0);
+    }
+
+    @Test
+    void getCivilianTest() {
+        testBoard.addShip(testShip);
+        testBoard.addShip(testCivShip);
+        assertEquals(false,testBoard.getIsCivilian(testShip.getStart()));
+        assertEquals(true,testBoard.getIsCivilian(testCivShip.getStart()));
+    }
+
+    @Test
+    void hitShipTest() {
+        testBoard.addShip(testShip);
+        testBoard.addShip(testCivShip);
+        assertEquals(0,testBoard.hitShip(testShip.getStart()));
+        assertEquals(1,testBoard.hitShip(testCivShip.getStart()));
     }
 
 }

@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Created by Pomer on 2/3/2017.
+ * Created by Justin on 2/3/2017.
  */
 class BattleshipModelTest {
     @Test
@@ -55,7 +55,7 @@ class BattleshipModelTest {
     void aifire(){
         Coordinate shot = new Coordinate(1,2);
         BattleshipModel testModel = new BattleshipModel();
-        testModel.placeShip();
+        testModel.placeShip(new Ship("Clipper", 3, new Coordinate(1,1), new Coordinate(1,3), "vertical", true));
         testModel.fire(testModel.getPlayer(), shot);
         assertNotEquals(0,testModel.getPlayer().getMisses());
     }

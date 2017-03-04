@@ -15,22 +15,24 @@ class GameTest {
         Gson gson = new Gson();
         String json = gson.toJson(myModel);
         json = g;
-        assertNotEquals(null, t.generate_JSON(myModel));
+        assertNotEquals(null, t.generate_JSON());
 
     }
+    /*
     @Test
     void interpret_JSON() {
-        String g = "test";
+        Gson gson = new Gson();
+        String g = gson.toJson("");
         Game t = new Game();
-        assertNotEquals(null,t.interpret_JSON(g));
-    }
+        assertNotEquals(null,t.interpret_JSON("HelloWorld"));
+    }*/
     @Test
     void getModel(){
         Game t = new Game();
         assertNotEquals(null,t.getModel());
     }
     @Test
-    void setModel(myModel){
+    void setModel(){
         Game t = new Game();
         t.setModel(myModel);
         assertNotEquals(null,t.getModel());
@@ -38,3 +40,4 @@ class GameTest {
 
 //    public String generate_JSON(BattleshipModel myModel){
 }
+
