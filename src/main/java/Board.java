@@ -81,7 +81,6 @@ public class Board {
             for (int j = 0; j < temp.get(i).getCoordinates().length; j++) {
                 if (temp.get(i).getCoordinates()[j].getAcross() == loc.getAcross() &&
                         temp.get(i).getCoordinates()[j].getDown() == loc.getDown()) {
-                    System.out.println("hello");
                     return temp.get(i).isCivilian();
                 }
             }

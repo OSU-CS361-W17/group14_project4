@@ -56,9 +56,7 @@ public class Ship {
         return orientation;
     }
 
-    public boolean getCanScan(){
-        return canScan;
-    }
+    public boolean getCanScan(){ return canScan; }
 
     public void setCivilian(){ isCivilian = true; }
     public void setBattle(){ isCivilian = false; }

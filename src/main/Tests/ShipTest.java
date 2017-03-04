@@ -41,5 +41,8 @@ class ShipTest {
         coords[0] = location;
         assertEquals(coords, theBlackPearl.getCoordinates());
     }
+    void scanTest(){
+        assertEquals(true, theBlackPearl.getCanScan());
+    }
 
 }

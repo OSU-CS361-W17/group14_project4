@@ -11,8 +11,9 @@ class BoardTest {
     private Ship testCivShip = new Civillianship("civSub", 3, new Coordinate(2, 3), new Coordinate(2,5), "vertical",true);
     @Test
     void firedAt() {
-        testBoard.addMiss(new Coordinate(1,3));
-        assertNotEquals(testBoard.getMisses().size(), 0);
+        testBoard.addShip(testShip);
+        testBoard.firedAt(1,3);
+        assertEquals(0, testBoard.getMisses().size());
 
     }
     @Test
