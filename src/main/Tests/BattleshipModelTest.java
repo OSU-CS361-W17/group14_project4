@@ -91,4 +91,18 @@ class BattleshipModelTest {
         }
     }
 
+    @Test
+    void fireAll() {
+        Coordinate shot;
+        BattleshipModel testModel = new BattleshipModel();
+        testModel.placeShipAI();
+        for(int i=1;i<11;i++){
+            for(int j=1;j<11;j++){
+                shot = new Coordinate(i,j);
+                testModel.fire(testModel.getAI(),shot);
+            }
+        }
+        assertNotEquals(testModel.getAI().getMisses().size(), 0);
+    }
+
 }

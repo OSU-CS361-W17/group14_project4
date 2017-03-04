@@ -2,6 +2,7 @@
  * Created by root on 2/2/17.
  */
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 
 public class Game {
 
@@ -20,7 +21,7 @@ public class Game {
         model = current;
     }
 
-    public void interpret_JSON(String json){
+    public void interpret_JSON(JsonElement json){
         Gson gson = new Gson();
         model = gson.fromJson(json, BattleshipModel.class);
     }

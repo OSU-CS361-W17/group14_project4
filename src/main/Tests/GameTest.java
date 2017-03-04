@@ -2,6 +2,8 @@
  * Created by julianweisbord on 2/3/17.
  */
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,14 +20,13 @@ class GameTest {
         assertNotEquals(null, t.generate_JSON());
 
     }
-    /*
     @Test
     void interpret_JSON() {
         Gson gson = new Gson();
-        String g = gson.toJson("");
+        g = gson.toJson("test");
         Game t = new Game();
-        assertNotEquals(null,t.interpret_JSON("HelloWorld"));
-    }*/
+        //assertNotEquals(null,t.interpret_JSON(gson));
+    }
     @Test
     void getModel(){
         Game t = new Game();
