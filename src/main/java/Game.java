@@ -7,11 +7,27 @@ public class Game {
 
     private BattleshipModel model;
 
-    public BattleshipModel interpret_JSON(){return null;} //Just here to make it compile.
+    Game(){
+        model = new BattleshipModel();
+        model.placeShipAI();
+    }
 
-    public String generate_JSON(BattleshipModel myModel){
+    BattleshipModel getModel(){
+        return model;
+    }
+
+    void setModel(BattleshipModel current){
+        model = current;
+    }
+
+    public void interpret_JSON(String json){
         Gson gson = new Gson();
-        String json = gson.toJson(myModel);
+        model = gson.fromJson(json, BattleshipModel.class);
+    } //Just here to make it compile.
+
+    public String generate_JSON(){
+        Gson gson = new Gson();
+        String json = gson.toJson(model);
         return json;
     }
 }

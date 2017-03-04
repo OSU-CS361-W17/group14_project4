@@ -64,12 +64,8 @@ public class BattleshipModel {
         generateShipLocation(ai,"Battleship",4);
         generateShipLocation(ai,"Carrier",5);
     }
-    public void placeShip(){
-        generateShipLocation(player,"Clipper",3);
-        generateShipLocation(player,"Submarine",3);
-        generateShipLocation(player,"Dinghy",1);
-        generateShipLocation(player,"Battleship",4);
-        generateShipLocation(player,"Carrier",5);
+    public void placeShip(Ship ship){
+        player.addShip(ship);
     }
   
     public void generateShipLocation(Board ai, String type, int size){
