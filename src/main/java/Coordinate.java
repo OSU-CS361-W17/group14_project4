@@ -2,18 +2,18 @@
  * Created by millelog on 2/2/17.
  */
 public class Coordinate {
-    private int across, down;
+    private int Across, Down; //Capitalized as that's what the front end expected
 
     public Coordinate(int a, int d){
-        across=a;
-        down=d;
+        Across=a;
+        Down=d;
     }
 
     public int getAcross(){
-        return across;
+        return Across;
     }
 
     public int getDown(){
-        return down;
+        return Down;
     }
 }
