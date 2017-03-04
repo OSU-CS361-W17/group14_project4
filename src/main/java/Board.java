@@ -76,15 +76,9 @@ public class Board {
 
     public boolean getIsCivilian(Coordinate loc) {
         ArrayList<Ship> temp = ships;
-        System.out.println("USER COORDINATES:");
-        System.out.println(loc.getAcross());
-        System.out.println(loc.getDown());
 
         for (int i = 0; i < temp.size(); i++) {
             for (int j = 0; j < temp.get(i).getCoordinates().length; j++) {
-                System.out.println("SHIP COORDINATES:");
-                System.out.println(temp.get(i).getCoordinates()[j].getAcross());
-                System.out.println(temp.get(i).getCoordinates()[j].getDown());
                 if (temp.get(i).getCoordinates()[j].getAcross() == loc.getAcross() &&
                         temp.get(i).getCoordinates()[j].getDown() == loc.getDown()) {
                     System.out.println("hello");
