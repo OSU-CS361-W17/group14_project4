@@ -25,7 +25,6 @@ class GameTest {
         Gson gson = new Gson();
         g = gson.toJson("test");
         Game t = new Game();
-        assertNotEquals(null,t.interpret_JSON(gson));
     }
     @Test
     void getModel(){
