@@ -97,7 +97,7 @@ public class Main {
         //get the current model
         BattleshipModel model = game.getModel();
         //update model
-        model.fire(model.getAI(), shot);
+        model.fire(shot);
         game.setModel(model);
         //return response
         res.body(game.generate_JSON());
