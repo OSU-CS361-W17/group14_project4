@@ -99,7 +99,7 @@ public class BattleshipModel {
         //Pattern: Just shoot row by row.
         int turn = player.getMisses().size()+player.getHits().size();
         int x = turn/10+1;
-        int y = turn%10;
+        int y = turn%10+1;
         Coordinate c = new Coordinate(x,y);
         aiFire(c);
 
