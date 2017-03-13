@@ -25,8 +25,6 @@ public class Main {
     }
 
     //This function should return a new model
-    public Boolean createdNewModel() { return newModel() != null; }
-    //For testing purposes
 
     private static String newModel() {
         return game.generate_JSON();
