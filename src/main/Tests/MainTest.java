@@ -33,6 +33,7 @@ class MainTest {
 
     @Test
     public void testGetModel() {
+        Game game = new Game();
         TestResponse res = request("GET", "/model");
         assertEquals(200, res.status);
         assertEquals("MODEL",res.body);
