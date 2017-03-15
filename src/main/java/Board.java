@@ -9,11 +9,13 @@ public class Board {
     private ArrayList<Ship> ships;
     private ArrayList<Coordinate> hits;
     private ArrayList<Coordinate> misses;
+    private ArrayList<Coordinate> allShots;
 
     public Board(){
         ships = new ArrayList<Ship>();
         hits = new ArrayList<Coordinate>();
         misses = new ArrayList<Coordinate>();
+        allShots = new ArrayList<Coordinate>();
     }
 
 
@@ -25,12 +27,15 @@ public class Board {
                 Coordinate shipCoords[] = ships.get(shipHit).getCoordinates();
                 for (int i = 0; i < shipCoords.length; i++) {
                     hits.add(shipCoords[i]);
+                    allShots.add(shipCoords[i]);
                 }
             } else {
                 hits.add(location);
+                allShots.add(location);
             }
         } else{
             misses.add(location);
+            allShots.add(location);
         }
 
     }
@@ -69,6 +74,8 @@ public class Board {
     public ArrayList<Coordinate> getMisses(){
         return misses;
     }
+
+    public ArrayList<Coordinate> getAllShots() { return allShots; }
 
     public void addShip(Ship newShip){
         ships.add(newShip);
