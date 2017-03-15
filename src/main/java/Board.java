@@ -63,6 +63,8 @@ public class Board {
 
     public void addMiss(Coordinate shot) {misses.add(shot);}
 
+    public void addShot(Coordinate shot) {allShots.add(shot);}
+
     public ArrayList<Ship> getShips(){
         return ships;
     }
