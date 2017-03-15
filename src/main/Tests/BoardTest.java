@@ -89,6 +89,7 @@ class BoardTest {
         testBoard.addShip(testCivShip);
         assertEquals(false,testBoard.getIsCivilian(testShip.getStart()));
         assertEquals(true,testBoard.getIsCivilian(testCivShip.getStart()));
+        assertEquals(false,testBoard.getIsCivilian(new Coordinate(11,11)));
     }
 
     @Test
@@ -97,6 +98,7 @@ class BoardTest {
         testBoard.addShip(testCivShip);
         assertEquals(0,testBoard.hitShip(testShip.getStart()));
         assertEquals(1,testBoard.hitShip(testCivShip.getStart()));
+        assertEquals(0,testBoard.hitShip(new Coordinate(11,11)));
     }
 
 }

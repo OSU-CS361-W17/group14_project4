@@ -21,7 +21,7 @@ class BattleshipModelTest {
         for(int i=0;i<11;i++){
             for(int j=0;j<11;j++){
                 c = new Coordinate(i,j);
-                testModel.aiFire(testModel.getPlayer(),c);
+                testModel.aiFire(c);
             }
         }
         assertNotEquals(0,testModel.getPlayer().getMisses());
@@ -35,7 +35,7 @@ class BattleshipModelTest {
         for(int i=0;i<11;i++){
             for(int j=0;j<11;j++){
                 c = new Coordinate(i,j);
-                testModel.fire(testModel.getAI(),c);
+                testModel.fire(c);
             }
         }
         assertNotEquals(0,testModel.getAI().getMisses());
@@ -47,7 +47,7 @@ class BattleshipModelTest {
         Coordinate shot = new Coordinate(1,2);
         BattleshipModel testModel = new BattleshipModel();
         testModel.placeShipAI();
-        testModel.fire(testModel.getAI(), shot);
+        testModel.fire(shot);
         assertNotEquals(testModel.getAI().getMisses().size(), 0);
     }
 
@@ -56,7 +56,7 @@ class BattleshipModelTest {
         Coordinate shot = new Coordinate(1,2);
         BattleshipModel testModel = new BattleshipModel();
         testModel.placeShip(new Ship("Clipper", 3, new Coordinate(1,1), new Coordinate(1,3), "vertical", true));
-        testModel.fire(testModel.getPlayer(), shot);
+        testModel.fire(shot);
         assertNotEquals(0,testModel.getPlayer().getMisses());
     }
 
@@ -99,10 +99,23 @@ class BattleshipModelTest {
         for(int i=1;i<11;i++){
             for(int j=1;j<11;j++){
                 shot = new Coordinate(i,j);
-                testModel.fire(testModel.getAI(),shot);
+                testModel.fire(shot);
             }
         }
         assertNotEquals(testModel.getAI().getMisses().size(), 0);
     }
 
+    @Test
+    void placeShipAIEasyTest(){
+        BattleshipModel t = new BattleshipModel();
+        t.placeShipAIEasy();
+        assertEquals(5,t.getAI().getShips().size());
+    }
+
+    @Test
+    void aiFireEasyTest(){
+        BattleshipModel t = new BattleshipModel();
+        t.aiFireEasy();
+        assertEquals(1,t.getPlayer().getMisses());
+    }
 }

@@ -25,8 +25,6 @@ public class Main {
     }
 
     //This function should return a new model
-    public Boolean createdNewModel() { return newModel() != null; }
-    //For testing purposes
 
     private static String newModel() {
         return game.generate_JSON();
@@ -97,7 +95,7 @@ public class Main {
         //get the current model
         BattleshipModel model = game.getModel();
         //update model
-        model.fire(model.getAI(), shot);
+        model.fire(shot);
         game.setModel(model);
         //return response
         res.body(game.generate_JSON());

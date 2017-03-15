@@ -1,42 +1,81 @@
+import com.google.gson.Gson;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import spark.Spark;
+import spark.utils.IOUtils;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static spark.Spark.awaitInitialization;
+
 
 /**
- * Created by julianweisbord on 2/3/17.
+ * Created by michaelhilton on 1/26/17.
  */
 class MainTest {
-    @Test
-    void main() {
-        String[] a =  {"/Test/1/2/3","/Something/SomethingElse"};
+
+    @BeforeAll
+    public static void beforeClass() {
+        Main.main(null);
+        awaitInitialization();
+    }
+
+    @AfterAll
+    public static void afterClass() {
+        Spark.stop();
     }
 
     @Test
-    void newModel() {
-        Main t = new Main();
-        assertEquals(true,t.createdNewModel());
+    public void testGetModel() {
+        Game game = new Game();
+        TestResponse res = request("GET", "/model");
+        assertEquals(200, res.status);
+        assertEquals("MODEL",res.body);
     }
 
     @Test
-    void getModelFromReq() {
-        Main t = new Main();
-
+    public void testPlaceShip() {
+        TestResponse res = request("POST", "/placeShip/aircraftCarrier/1/1/horizontal");
+        assertEquals(200, res.status);
+        assertEquals("SHIP",res.body);
     }
 
-    //The test for this is to go to the hosted site and fill in each attribute with a valid position
-    //Click place ship and if the ship is placed on the board then the test passes
-    //If no ship appears on the player board then the test fails.
-    //assertEquals(true,t.createdPlaceShip());
-    @Test
-    void placeShip() {
-        Main t = new Main();
+    private TestResponse request(String method, String path) {
+        try {
+            URL url = new URL("http://localhost:4567" + path);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod(method);
+            connection.setDoOutput(true);
+            connection.connect();
+            String body = IOUtils.toString(connection.getInputStream());
+            return new TestResponse(connection.getResponseCode(), body);
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("Sending request failed: " + e.getMessage());
+            return null;
+        }
     }
 
-    //To test select an x,y coordinate to fire at. Click the fire button in the UI.
-    //If a shot appears on the enemy board that is either a hit or miss then the test succeeds.
-    //If nothing appears or it crashes then the test fails
-    //Please see /r/therewasanattempt for more information
-    @Test
-    void fireAt() {
-        Main t = new Main();
+    private static class TestResponse {
+
+        public final String body;
+        public final int status;
+
+        public TestResponse(int status, String body) {
+            this.status = status;
+            this.body = body;
+        }
+
+        public Map<String,String> json() {
+            return new Gson().fromJson(body, HashMap.class);
+        }
     }
+
+
 }
