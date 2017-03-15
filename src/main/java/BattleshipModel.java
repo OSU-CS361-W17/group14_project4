@@ -33,12 +33,13 @@ public class BattleshipModel {
                     shot.getDown() == occupied.getDown()){
                 //add to ai's hit list
                 player.addHit(shot);
+                player.addShot(shot);
                 return;
             }
         }
         //If it is not occupied then add to miss list
         player.addMiss(shot);
-
+        player.addShot(shot);
     }
 
     public void fire(Coordinate shot){
@@ -51,11 +52,13 @@ public class BattleshipModel {
                     shot.getDown() == occupied.getDown()){
                 //add to ai's hit list
                 ai.addHit(shot);
+                ai.addShot(shot);
                 return;
             }
         }
         //If it is not occupied then add to miss list
         ai.addMiss(shot);
+        ai.addShot(shot);
 
     }
 
@@ -96,12 +99,28 @@ public class BattleshipModel {
             {
                 checkLeft = false;
             }
-            if(right.getAcross() == curr.getAcross() && right.getDown() == curr.getDown())
-            {
+            if(right.getAcross() == curr.getAcross() && right.getDown() == curr.getDown()) {
                 checkRight = false;
             }
 
-            }
+        }
+
+        if(checkUp == true){
+            fire(up);
+        }
+        else if(checkDown == true){
+            fire(down);
+        }
+
+        else if(checkLeft == true){
+            fire(left);
+        }
+        else if(checkRight == true){
+            fire(right);
+        }
+        else{
+            aiFireEasy();
+        }
 
     }
 
