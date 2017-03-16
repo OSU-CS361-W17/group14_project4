@@ -1,6 +1,7 @@
 /**
  * Created by root on 2/2/17.
  */
+import java.lang.reflect.Array;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
 
@@ -32,12 +33,13 @@ public class BattleshipModel {
                     shot.getDown() == occupied.getDown()){
                 //add to ai's hit list
                 player.addHit(shot);
+                player.addShot(shot);
                 return;
             }
         }
         //If it is not occupied then add to miss list
         player.addMiss(shot);
-
+        player.addShot(shot);
     }
 
     public void fire(Coordinate shot){
@@ -50,11 +52,75 @@ public class BattleshipModel {
                     shot.getDown() == occupied.getDown()){
                 //add to ai's hit list
                 ai.addHit(shot);
+                ai.addShot(shot);
                 return;
             }
         }
         //If it is not occupied then add to miss list
         ai.addMiss(shot);
+        ai.addShot(shot);
+
+    }
+
+    public void AIFire(Board target)
+    {
+        ArrayList<Coordinate> ships = target.getAllShips();
+
+
+        ArrayList<Coordinate> hits = target.getHits();
+        ArrayList<Coordinate> shots = target.getAllShots();
+        Coordinate previousHit= hits.get(hits.size() - 1);
+
+        int x = previousHit.getAcross();
+        int y = previousHit.getDown();
+
+        Coordinate up = new Coordinate(x, y - 1);
+        Coordinate down = new Coordinate(x, y + 1);
+        Coordinate left = new Coordinate(x - 1, y );
+        Coordinate right = new Coordinate(x + 1, y);
+
+        boolean checkUp = true;
+        boolean checkDown = true;
+        boolean checkLeft = true;
+        boolean checkRight = true;
+
+        for(int i = 0; i < shots.size() - 1; i++)
+        {
+            Coordinate curr = shots.get(i);
+            if(up.getAcross() == curr.getAcross() && up.getDown() == curr.getDown())
+            {
+                checkUp = false;
+            }
+            if(down.getAcross() == curr.getAcross() && down.getDown() == curr.getDown())
+            {
+                checkDown = false;
+            }
+            if(left.getAcross() == curr.getAcross() && left.getDown() == curr.getDown())
+            {
+                checkLeft = false;
+            }
+            if(right.getAcross() == curr.getAcross() && right.getDown() == curr.getDown()) {
+                checkRight = false;
+            }
+
+        }
+
+        if(checkUp == true){
+            fire(up);
+        }
+        else if(checkDown == true){
+            fire(down);
+        }
+
+        else if(checkLeft == true){
+            fire(left);
+        }
+        else if(checkRight == true){
+            fire(right);
+        }
+        else{
+            aiFireEasy();
+        }
 
     }
 
