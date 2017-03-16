@@ -9,7 +9,6 @@ public class Ship {
     private Coordinate end;
     private String orientation;
     private boolean canScan;
-    private boolean isCivilian;
 
     public Ship(String name, int length, Coordinate start, Coordinate end, String orientation,boolean canScan){
         this.name=name;

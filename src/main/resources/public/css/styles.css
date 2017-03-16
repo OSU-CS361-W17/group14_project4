@@ -3,7 +3,9 @@ body {
     margin: 0;
     padding: 0;
 }
-
+p{
+  margin: 0em 2em 0em 2em ;
+}
 .gameBoard{
 /*with:100px;
 height:100px;*/
@@ -22,6 +24,14 @@ table, th, td {
 
 #MyBoard .ship{
 background-color: orange;
+}
+
+label{
+    display:block;
+}
+#FireDiv{
+  margin: 32em 0em 0em 0em;
+  text-align: left;
 }
 
 /*

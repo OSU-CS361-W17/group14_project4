@@ -24,14 +24,14 @@ public class BattleshipModel {
     }
     //Why does this even ask for the board? It should know it already!
     public void aiFire(Coordinate shot){
-        //get array of all occupied coordinates on ai board
+        //get array of all occupied coordinates on player board
         ArrayList<Coordinate> ships = player.getAllShips();
         //for each cordinate
         for(Coordinate occupied: ships){
             //if the shot matches a ship location
             if(shot.getAcross() == occupied.getAcross() &&
                     shot.getDown() == occupied.getDown()){
-                //add to ai's hit list
+                //add to player's hit list
                 player.addHit(shot);
                 player.addShot(shot);
                 return;
