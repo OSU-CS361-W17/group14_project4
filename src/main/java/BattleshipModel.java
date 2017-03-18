@@ -4,6 +4,7 @@
 import java.lang.reflect.Array;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class BattleshipModel {
 
@@ -62,7 +63,7 @@ public class BattleshipModel {
 
     }
 
-    public void AIFire(Board target)
+    public void aiFireHard(Board target)
     {
         ArrayList<Coordinate> ships = target.getAllShips();
 
@@ -119,7 +120,15 @@ public class BattleshipModel {
             fire(right);
         }
         else{
-            aiFireEasy();
+            int max = 10;
+            int min = 1;
+            Random random = new Random();
+            int randRow = random.nextInt(max - min + 1) + min;
+            int randCol = random.nextInt(max - min + 1) + min;
+
+            Coordinate coor = new Coordinate(randRow,randCol);
+            fire(coor);
+
         }
 
     }
@@ -258,4 +267,6 @@ public class BattleshipModel {
     public Board getPlayer(){
         return player;
     }
+
+
 }
