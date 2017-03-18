@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import Random;
 
 /**
  * Created by Justin on 2/3/2017.
@@ -59,6 +60,16 @@ class BattleshipModelTest {
         testModel.fire(shot);
         assertNotEquals(0,testModel.getPlayer().getMisses());
     }
+
+    @Test
+    void aiFireHard(){
+        Board playerTest = new Board();
+        aiFireHard(playerTest);
+
+        assertNotNull(player.getAllShots().get(0));
+
+    }
+
 
 
     @Test
