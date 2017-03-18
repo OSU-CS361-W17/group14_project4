@@ -1,12 +1,36 @@
 var gameModel;
 
 $( document ).ready(function() {
+  setDifficulty();
   // Handler for .ready() called.
   $.getJSON("model", function( json ) {
   gameModel = json;
     console.log( "JSON Data: " + json );
    });
 });
+
+function setDifficulty(){
+    console.log("in difficulty");
+    var difficulty;
+    var invalidDifficulty=true;
+    while(invalidDifficulty){
+        difficulty = window.prompt("Please enter a difficulty ('easy' or 'hard')", "");
+        if(difficulty == "easy" || difficulty == "hard"){
+            invalidDifficulty=false;
+        }
+        else{
+            window.alert("Invalid input, please try again.");
+        }
+    }
+    console.log(difficulty);
+    var request = $.ajax({
+        url: "/setDifficulty/"+difficulty,
+        method: "post",
+        data: JSON.stringify(gameModel),
+        contentType: "application/json: charset=utf-8",
+        dataType: "json"
+    });
+}
 
 function placeShip() {
    console.log($( "#shipSelec" ).val());
@@ -39,11 +63,11 @@ function placeShip() {
 
 
 function fire(){
- console.log($( "#colFire" ).val());
-   console.log($( "#rowFire" ).val());
+ console.log($( "#fireY" ).val());
+   console.log($( "#fireX" ).val());
 //var menuId = $( "ul.nav" ).first().attr( "id" );
    var request = $.ajax({
-     url: "/fire/"+$( "#colFire" ).val()+"/"+$( "#rowFire" ).val(),
+     url: "/fire/"+$( "#fireX" ).val()+"/"+$( "#fireY" ).val(),
      method: "post",
      data: JSON.stringify(gameModel),
      contentType: "application/json; charset=utf-8",
@@ -96,14 +120,17 @@ $( '#MyBoard td'  ).css("background-color", "blue");
 $( '#TheirBoard td'  ).css("background-color", "blue");
 
 if(gameModel.scanResult){
-alert("Scan found at least one Ship")}
+    alert("Scan found at least one Ship")
+}else{
+    alert("Scan found no Ship");
+}
 
 
 displayShip(gameModel.aircraftCarrier);
-displayShip(gameModel.battleship);
-displayShip(gameModel.cruiser);
-displayShip(gameModel.destroyer);
+displayShip(gameModel.clipper);
 displayShip(gameModel.submarine);
+displayShip(gameModel.dinghy);
+displayShip(gameModel.battleship);
 
 for (var i = 0; i < gameModel.computerMisses.length; i++) {
    $( '#TheirBoard #' + gameModel.computerMisses[i].Across + '_' + gameModel.computerMisses[i].Down ).css("background-color", "green");

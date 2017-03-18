@@ -20,11 +20,20 @@ public class Main {
 
         //This will listen to GET requests to /model and return a clean new model
         get("/model", (req, res) -> newModel());
+        //Listn for a POST request that expects the ai difficulty
+        post("/setDifficulty/:difficulty", (req, res) -> setDifficulty(req));
         //This will listen to POST requests and expects to receive a game model, as well as location to fire to
         post("/fire/:row/:col", (req, res) -> fireAt(req));
         //This will listen to POST requests and expects to receive a game model, as well as location to place the ship
         post("/placeShip/:id/:row/:col/:orientation", (req, res) -> placeShip(req));
     }
+
+    //This function sets the difficulty boolean in the game
+
+    private static String setDifficulty(Request req){
+        game.setDifficulty(req.params("difficulty"));
+        return game.generate_JSON();
+    };
 
     //This function should return a new model
 
@@ -121,10 +130,17 @@ public class Main {
     //Similar to placeShip, but with firing.
     private static String fireAt(Request req) {
         //get the coordinate from the request object
-        Coordinate shot = new Coordinate(Integer.parseInt(req.params("Across")), Integer.parseInt(req.params("Down")));
+        Coordinate shot = new Coordinate(Integer.parseInt(req.params("col")), Integer.parseInt(req.params("row")));
         //get the current model
         BattleshipModel model = game.getModel();
         //update model
+        System.out.println(game.getDifficulty());
+        if(game.getDifficulty().equals("easy")){
+            model.aiFireEasy();
+        }
+        if(game.getDifficulty().equals("hard")){
+            model.aiFireHard();
+        }
         model.fire(shot);
         game.setModel(model);
         //return response

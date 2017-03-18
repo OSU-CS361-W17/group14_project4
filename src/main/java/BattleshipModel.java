@@ -63,13 +63,13 @@ public class BattleshipModel {
 
     }
 
-    public void aiFireHard(Board target)
+    public void aiFireHard()
     {
-        ArrayList<Coordinate> ships = target.getAllShips();
+        ArrayList<Coordinate> ships = player.getAllShips();
 
 
-        ArrayList<Coordinate> hits = target.getHits();
-        ArrayList<Coordinate> shots = target.getAllShots();
+        ArrayList<Coordinate> hits = player.getHits();
+        ArrayList<Coordinate> shots = player.getAllShots();
         Coordinate previousHit= hits.get(hits.size() - 1);
 
         int x = previousHit.getAcross();

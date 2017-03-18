@@ -7,6 +7,7 @@ import com.google.gson.JsonElement;
 public class Game {
 
     private BattleshipModel model;
+    private String difficulty;
 
     Game(){
         model = new BattleshipModel();
@@ -19,6 +20,14 @@ public class Game {
 
     void setModel(BattleshipModel current){
         model = current;
+    }
+
+    public String getDifficulty(){
+        return difficulty;
+    }
+
+    public void setDifficulty(String d){
+        difficulty=d;
     }
 
     public void interpret_JSON(JsonElement json){
