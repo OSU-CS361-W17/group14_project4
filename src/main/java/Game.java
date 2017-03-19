@@ -26,13 +26,8 @@ public class Game {
         return difficulty;
     }
 
-    public void setDifficulty(String d){
-        difficulty=d;
-    }
-
-    public void interpret_JSON(JsonElement json){
-        Gson gson = new Gson();
-        model = gson.fromJson(json, BattleshipModel.class);
+    public void setDifficulty(String d) {
+        difficulty = d;
     }
 
     public String generate_JSON(){

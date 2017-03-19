@@ -20,6 +20,7 @@ import static spark.Spark.awaitInitialization;
  */
 class MainTest {
 
+
     @BeforeAll
     public static void beforeClass() {
         Main.main(null);
@@ -35,15 +36,31 @@ class MainTest {
     public void testGetModel() {
         Game game = new Game();
         TestResponse res = request("GET", "/model");
-        assertEquals(200, res.status);
-        assertEquals("MODEL",res.body);
+        assertNotEquals(null, res.body);
     }
 
     @Test
     public void testPlaceShip() {
         TestResponse res = request("POST", "/placeShip/aircraftCarrier/1/1/horizontal");
-        assertEquals(200, res.status);
-        assertEquals("SHIP",res.body);
+        TestResponse res2 = request("POST", "/placeShip/dinghy/1/2/horizontal");
+        TestResponse res3 = request("POST", "/placeShip/submarine/1/3/horizontal");
+        TestResponse res4 = request("POST", "/placeShip/battleship/1/4/horizontal");
+        TestResponse res5 = request("POST", "/placeShip/clipper/5/5/vertical");
+        assertNotEquals(null,res.body);
+    }
+
+    @Test
+    public void testSetDifficulty() {
+        TestResponse res = request("POST", "/setDifficulty/hard");
+        assertNotEquals(null, res.body);
+    }
+
+    @Test
+    public void testFire() {
+        TestResponse res = request("POST", "/fire/2/2");
+        TestResponse changeDiff = request("POST", "/setDifficulty/easy");
+        TestResponse res2 = request("POST", "/fire/3/4");
+        assertNotEquals(null, res.body);
     }
 
     private TestResponse request(String method, String path) {
