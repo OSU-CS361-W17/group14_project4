@@ -32,6 +32,13 @@ class GameTest {
         assertNotEquals(null,t.getModel());
     }
     @Test
+    void testGetDiff(){
+        Game t = new Game();
+        t.setDifficulty("easy");
+        String diff = t.getDifficulty();
+        assertNotEquals(null, diff);
+    }
+    @Test
     void setModel(){
         Game t = new Game();
         t.setModel(myModel);

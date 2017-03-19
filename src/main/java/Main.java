@@ -42,22 +42,7 @@ public class Main {
         return game.generate_JSON();
     }
 
-    //This function should accept an HTTP request and deseralize it into an actual Java object.
 
-    //public Boolean createdGetModelFromReq(Request req) { return getModelFromReq(req); }
-    //For testing purposes
-
-    private static void getModelFromReq(Request req){
-        Gson gson = new Gson();
-        String result = "";
-        try {
-            result = java.net.URLDecoder.decode(req.body(),"US-ASCII");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        BattleshipModel modelFromReq = gson.fromJson(result, BattleshipModel.class);
-        game.setModel(modelFromReq);
-    }
 
     //This controller should take a json object from the front end, and place the ship as requested, and then return the object.
 
