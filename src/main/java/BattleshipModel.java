@@ -70,54 +70,59 @@ public class BattleshipModel {
 
         ArrayList<Coordinate> hits = player.getHits();
         ArrayList<Coordinate> shots = player.getAllShots();
-        Coordinate previousHit= hits.get(hits.size() - 1);
-
-        int x = previousHit.getAcross();
-        int y = previousHit.getDown();
-
-        Coordinate up = new Coordinate(x, y - 1);
-        Coordinate down = new Coordinate(x, y + 1);
-        Coordinate left = new Coordinate(x - 1, y );
-        Coordinate right = new Coordinate(x + 1, y);
 
         boolean checkUp = true;
         boolean checkDown = true;
         boolean checkLeft = true;
         boolean checkRight = true;
 
-        for(int i = 1; i < shots.size(); i++)
-        {
-            Coordinate curr = shots.get(i);
-            if(up.getAcross() == curr.getAcross() && up.getDown() == curr.getDown())
-            {
-                checkUp = false;
-            }
-            if(down.getAcross() == curr.getAcross() && down.getDown() == curr.getDown())
-            {
-                checkDown = false;
-            }
-            if(left.getAcross() == curr.getAcross() && left.getDown() == curr.getDown())
-            {
-                checkLeft = false;
-            }
-            if(right.getAcross() == curr.getAcross() && right.getDown() == curr.getDown()) {
-                checkRight = false;
-            }
+        Coordinate up = null;
+        Coordinate down = null;
+        Coordinate left = null;
+        Coordinate right = null;
 
+        if(shots.size() >=1) {
+            Coordinate previousHit = hits.get(hits.size() - 1);
+
+            int x = previousHit.getAcross();
+            int y = previousHit.getDown();
+
+            up = new Coordinate(x, y - 1);
+            down = new Coordinate(x, y + 1);
+            left = new Coordinate(x - 1, y);
+            right = new Coordinate(x + 1, y);
+
+
+            for (int i = 0; i < shots.size(); i++) {
+                Coordinate curr = shots.get(i);
+                if (up.getAcross() == curr.getAcross() && up.getDown() == curr.getDown()) {
+                    checkUp = false;
+                }
+                if (down.getAcross() == curr.getAcross() && down.getDown() == curr.getDown()) {
+                    checkDown = false;
+                }
+                if (left.getAcross() == curr.getAcross() && left.getDown() == curr.getDown()) {
+                    checkLeft = false;
+                }
+                if (right.getAcross() == curr.getAcross() && right.getDown() == curr.getDown()) {
+                    checkRight = false;
+                }
+
+            }
         }
 
-        if(checkUp == true){
-            fire(up);
+        if(up != null && checkUp == true){
+            aiFire(up);
         }
-        else if(checkDown == true){
-            fire(down);
+        else if(down != null && checkDown == true){
+            aiFire(down);
         }
 
-        else if(checkLeft == true){
-            fire(left);
+        else if(left != null && checkLeft == true){
+            aiFire(left);
         }
-        else if(checkRight == true){
-            fire(right);
+        else if(right != null && checkRight == true){
+            aiFire(right);
         }
         else{
             int max = 10;
@@ -127,7 +132,7 @@ public class BattleshipModel {
             int randCol = random.nextInt(max - min + 1) + min;
 
             Coordinate coor = new Coordinate(randRow,randCol);
-            fire(coor);
+            aiFire(coor);
 
         }
 
