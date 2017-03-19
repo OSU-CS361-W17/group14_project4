@@ -81,60 +81,66 @@ public class BattleshipModel {
         Coordinate left = null;
         Coordinate right = null;
 
-        if(shots.size() >=1) {
-            Coordinate previousHit = hits.get(hits.size() - 1);
+        if(shots.size() > 0) {
 
-            int x = previousHit.getAcross();
-            int y = previousHit.getDown();
-
-            up = new Coordinate(x, y - 1);
-            down = new Coordinate(x, y + 1);
-            left = new Coordinate(x - 1, y);
-            right = new Coordinate(x + 1, y);
+            if (hits.size() > 0) {
+                Coordinate previousHit = hits.get(hits.size() - 1);
 
 
-            for (int i = 0; i < shots.size(); i++) {
-                Coordinate curr = shots.get(i);
-                if (up.getAcross() == curr.getAcross() && up.getDown() == curr.getDown()) {
-                    checkUp = false;
+                int x = previousHit.getAcross();
+                int y = previousHit.getDown();
+
+                up = new Coordinate(x, y - 1);
+                down = new Coordinate(x, y + 1);
+                left = new Coordinate(x - 1, y);
+                right = new Coordinate(x + 1, y);
+
+
+                for (int i = 0; i < shots.size(); i++) {
+                    Coordinate curr = shots.get(i);
+                    if (up.getAcross() == curr.getAcross() && up.getDown() == curr.getDown()) {
+                        checkUp = false;
+                    }
+                    if (down.getAcross() == curr.getAcross() && down.getDown() == curr.getDown()) {
+                        checkDown = false;
+                    }
+                    if (left.getAcross() == curr.getAcross() && left.getDown() == curr.getDown()) {
+                        checkLeft = false;
+                    }
+                    if (right.getAcross() == curr.getAcross() && right.getDown() == curr.getDown()) {
+                        checkRight = false;
+                    }
                 }
-                if (down.getAcross() == curr.getAcross() && down.getDown() == curr.getDown()) {
-                    checkDown = false;
-                }
-                if (left.getAcross() == curr.getAcross() && left.getDown() == curr.getDown()) {
-                    checkLeft = false;
-                }
-                if (right.getAcross() == curr.getAcross() && right.getDown() == curr.getDown()) {
-                    checkRight = false;
-                }
+            } }
 
-            }
-        }
-
-        if(up != null && checkUp == true){
-            aiFire(up);
-        }
-        else if(down != null && checkDown == true){
-            aiFire(down);
-        }
-
-        else if(left != null && checkLeft == true){
-            aiFire(left);
-        }
-        else if(right != null && checkRight == true){
-            aiFire(right);
-        }
+        if(up != null && checkUp == true){ aiFire(up); }
+        else if(down != null && checkDown == true){ aiFire(down); }
+        else if(left != null && checkLeft == true){ aiFire(left); }
+        else if(right != null && checkRight == true){ aiFire(right); }
         else{
             int max = 10;
             int min = 1;
             Random random = new Random();
             int randRow = random.nextInt(max - min + 1) + min;
             int randCol = random.nextInt(max - min + 1) + min;
+            Boolean repeated = false;
+            while(!repeated){
+                repeated = true;
+                randRow = random.nextInt(max - min + 1) + min;
+                randCol = random.nextInt(max - min + 1) + min;
+
+                for(int i=0;i<shots.size();i++){
+                    if(shots.get(i).getDown() == randCol && shots.get(i).getAcross() == randRow){
+                        repeated = false;
+                    }
+                }
+            }
 
             Coordinate coor = new Coordinate(randRow,randCol);
             aiFire(coor);
 
         }
+
 
     }
 
@@ -193,29 +199,27 @@ public class BattleshipModel {
         int x,y,direction;
         Coordinate start = new Coordinate(0,0),end = new Coordinate(0,0);
         //This is because there's a syntax error if it's not assigned to begin with.
-        boolean valid = true;
+        boolean valid = false;
         direction = ThreadLocalRandom.current().nextInt(0,2);
         String dir;
         Ship s = null;
         if (direction == 0){
             //Facing sideways
             dir = "horizontal";
-            while(valid){
-                valid = false;
-                //Wait. Does the grid go from 0-9, or 1 to 10? I think 1-10.
+            while(!valid){
+                valid = true;
                 x = ThreadLocalRandom.current().nextInt(1,11-size);
                 y = ThreadLocalRandom.current().nextInt(1,11);
                 start = new Coordinate(x,y);
-                end = new Coordinate(start.getAcross()+size,start.getDown()+size);
+                end = new Coordinate(start.getAcross()+size-1,start.getDown());
                 for(int i=0;i<ai.getShips().size();i++){
                     Coordinate[] comp = ai.getShips().get(i).getCoordinates();
                     for(int j=0;j<comp.length;j++){
                         //Make sure there is no intersection.
-                        if((comp[j].getAcross() >= start.getAcross() && comp[j].getAcross() <= end.getAcross()) &&
-                                (comp[j].getDown() >= start.getDown() && comp[j].getDown() <= end.getDown())){
+                        if(comp[j].getAcross() == start.getAcross() && comp[j].getDown() == end.getDown()){
                             //If the point is greater than the prospective point's start but less than it's end
                             //for both X and Y, that means there's a problem.
-                            valid = true;
+                            valid = false;
                         }
                     }
 
@@ -226,21 +230,20 @@ public class BattleshipModel {
         else {
             //Facing downwards
             dir = "vertical";
-            while(valid){
-                valid = false;
+            while(!valid){
+                valid = true;
                 x = ThreadLocalRandom.current().nextInt(1,11);
                 y = ThreadLocalRandom.current().nextInt(1,11-size);
                 start = new Coordinate(x,y);
-                end = new Coordinate(start.getAcross()+size,start.getDown()+size);
+                end = new Coordinate(start.getAcross(),start.getDown()+size-1);
                 for(int i=0;i<ai.getShips().size();i++){
                     Coordinate[] comp = ai.getShips().get(i).getCoordinates();
                     for(int j=0;j<comp.length;j++){
                         //Make sure there is no intersection.
-                        if((comp[j].getAcross() >= start.getAcross() && comp[j].getAcross() <= end.getAcross()) &&
-                                (comp[j].getDown() >= start.getDown() && comp[j].getDown() <= end.getDown())){
+                        if(comp[j].getAcross() == start.getAcross() && comp[j].getDown() == end.getDown()){
                             //If the point is greater than the prospective point's start but less than it's end
                             //for both X and Y, that means there's a problem.
-                            valid = true;
+                            valid = false;
                         }
                     }
 
