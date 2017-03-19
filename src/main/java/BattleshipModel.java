@@ -85,7 +85,7 @@ public class BattleshipModel {
         boolean checkLeft = true;
         boolean checkRight = true;
 
-        for(int i = 0; i < shots.size() - 1; i++)
+        for(int i = 1; i < shots.size(); i++)
         {
             Coordinate curr = shots.get(i);
             if(up.getAcross() == curr.getAcross() && up.getDown() == curr.getDown())
