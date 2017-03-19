@@ -47,4 +47,26 @@ class ShipTest {
         assertEquals(true, theBlackPearl.getCanScan());
     }
 
+    @org.junit.jupiter.api.Test
+    void setCivilian(){
+        theBlackPearl.setCivilian();
+        assertEquals(true, theBlackPearl.isCivilian());
+
+    }
+
+    @org.junit.jupiter.api.Test
+    void setBattle(){
+        theBlackPearl.setBattle();
+        assertEquals(false, theBlackPearl.isCivilian());
+
+    }
+
+    @org.junit.jupiter.api.Test
+    void isCivilian(){
+        theBlackPearl.setCivilian();
+        assertEquals(true, theBlackPearl.isCivilian());
+
+    }
+
+
 }
