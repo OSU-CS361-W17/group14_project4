@@ -11,6 +11,9 @@ class GameTest {
     private BattleshipModel myModel = new BattleshipModel();
     private String g = "testjson";
 
+    //Note: It MAY get stuck on generate_JSON. It's a known issue we haven't figured out the cause of,
+    //but we've not been able to get it occur recently despite us not having directly fixing it.
+
     @org.junit.jupiter.api.Test
     void generate_JSON() {
         Game t = new Game();
@@ -19,12 +22,6 @@ class GameTest {
         json = g;
         assertNotEquals(null, t.generate_JSON());
 
-    }
-    @Test
-    void interpret_JSON() {
-        Gson gson = new Gson();
-        g = gson.toJson("test");
-        Game t = new Game();
     }
     @Test
     void getModel(){

@@ -18,6 +18,9 @@ import static spark.Spark.awaitInitialization;
 /**
  * Created by michaelhilton on 1/26/17.
  */
+
+//NOTE: These tests may need to be ran multiple times, since sometimes they fail and sometimes they don't.
+//We've recorded a maximum of 95% total line coverage (85% from main), and a minimum of 87% (24% from main)
 class MainTest {
 
 

@@ -5,6 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Created by Justin on 2/3/2017.
  */
+
+//NOTE: This may need to be run multiple times, due to the fact that our AI code is random, so it may occasionally
+//skip certain lines.
+
+
 class BattleshipModelTest {
     @Test
     void gameOver() {
@@ -46,9 +51,12 @@ class BattleshipModelTest {
     void fire(){
         Coordinate shot = new Coordinate(1,2);
         BattleshipModel testModel = new BattleshipModel();
+
         testModel.placeShipAI();
+
         testModel.fire(shot);
-        assertNotEquals(testModel.getAI().getMisses().size(), 0);
+
+        assertNotEquals(0,testModel.getAI().getAllShots().size());
     }
 
     @Test
@@ -62,8 +70,17 @@ class BattleshipModelTest {
 
     @Test
     void aiFireHard(){
+        Ship theBlackPearl = new Ship("Black Pearl", 5, new Coordinate(1,1), new Coordinate(1, 5), "vertical",true);
+        Ship theRedPearl = new Ship("Red Pearl", 5, new Coordinate(4,1), new Coordinate(4, 5), "vertical",true);
+        Ship theBluePearl = new Ship("Blue Pearl", 5, new Coordinate(5,1), new Coordinate(9, 1), "horizontal",true);
+        Ship theColoredPearl = new Ship("Colored Pearl", 5, new Coordinate(2,3), new Coordinate(6, 3), "horizontal",true);
+        Ship theOtherPearl = new Ship("Other Pearl", 5, new Coordinate(5,9), new Coordinate(9, 9), "horizontal",true);
+
         BattleshipModel model = new BattleshipModel();
-        model.aiFireHard();
+        model.placeShip(theBlackPearl);
+        for(int i=0;i<100;i++) {
+            model.aiFireHard();
+        }
         assertNotNull(model.getPlayer().getAllShots().get(0));
     }
 
@@ -73,6 +90,7 @@ class BattleshipModelTest {
     void placeShipAI() {
         //Make sure all ships are placed
         BattleshipModel testModel = new BattleshipModel();
+
         testModel.placeShipAI();
         //This basically assumes all 5 ships have been placed.
         assertEquals(5,testModel.getAI().getShips().size());
