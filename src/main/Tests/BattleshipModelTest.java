@@ -124,6 +124,6 @@ class BattleshipModelTest {
     void aiFireEasyTest(){
         BattleshipModel t = new BattleshipModel();
         t.aiFireEasy();
-        assertEquals(1,t.getPlayer().getMisses());
+        assertNotNull(t.getPlayer().getAllShots().get(0));
     }
 }
